@@ -1,3 +1,6 @@
+import fpdf
+
+
 class Bill:
     """
     Object that contains data about a bill, such as the billing cycle
@@ -33,7 +36,25 @@ class PdfReport:
         self.filename = filename
 
     def generate(self, roommate1, roommate2, bill):
-        pass
+        pdf = fpdf.FPDF(orientation='P', unit='mm', format='A4')
+        pdf.add_page()
+
+        # Title of the bill
+        pdf.set_font(family='Times', size=24, style='B')
+        pdf.cell(w=200, h=10, txt="Flatmates Bill", border=0, align='C', ln=1)
+        pdf.cell(w=100, h=20, txt=f"Period: {bill.bill_cycle}", border=0, ln=2)
+
+        # name and amount owed by the fist roommate
+        pdf.set_font(family='Times', size=20, style='B')
+        pdf.cell(w=100, h=10, txt=roommate1.name, border=0)
+        pdf.cell(w=100, h=10, txt=str(roommate1.pays(bill, roommate2)), border=0, ln=1)
+
+        # Name and amount owed by the second roommate
+        pdf.set_font(family='Times', size=20, style='B')
+        pdf.cell(w=100, h=10, txt=roommate2.name, border=0)
+        pdf.cell(w=100, h=10, txt=str(roommate2.pays(bill, roommate1)), border=0, ln=1)
+
+        pdf.output(self.filename)
 
 
 the_bill = Bill(amount=120, bill_cycle="March 2024")
@@ -42,3 +63,5 @@ mary = Roommate(name='Mary', days_in_house=25)
 
 print("John pays: ", john.pays(bill=the_bill, roommate2=mary))
 print("Mary pays: ", mary.pays(bill=the_bill, roommate2=john))
+Pdf = PdfReport(f"{the_bill.bill_cycle}.pdf")
+Pdf.generate(roommate1=john, roommate2=mary, bill=the_bill)
