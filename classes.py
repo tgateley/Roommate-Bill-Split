@@ -63,6 +63,7 @@ class PdfReport:
         pdf.cell(w=100, h=10, txt="Bill total: ", border=0)
         pdf.cell(w=100, h=10, txt=str(bill.amount), border=0, ln=1)
 
-        pdf.output(f"pdf_reports/{self.filename}")
+        # Change directory to pdf_reports, generate and open the PDF
         os.chdir("pdf_reports")
+        pdf.output(self.filename)
         webbrowser.open(self.filename)
