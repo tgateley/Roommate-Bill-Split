@@ -1,4 +1,5 @@
 import webbrowser
+import os
 
 from fpdf import FPDF
 
@@ -42,7 +43,7 @@ class PdfReport:
         pdf.add_page()
 
         # Add icon
-        pdf.image("house.png", w=20, h=20)
+        pdf.image("files/house.png", w=20, h=20)
 
         # Title of the bill
         pdf.set_font(family='Times', size=24, style='B')
@@ -62,5 +63,6 @@ class PdfReport:
         pdf.cell(w=100, h=10, txt="Bill total: ", border=0)
         pdf.cell(w=100, h=10, txt=str(bill.amount), border=0, ln=1)
 
-        pdf.output(self.filename)
+        pdf.output(f"pdf_reports/{self.filename}")
+        os.chdir("pdf_reports")
         webbrowser.open(self.filename)
