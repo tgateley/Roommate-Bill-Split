@@ -1,4 +1,5 @@
-from classes import Bill, Roommate, PdfReport
+from roommates import Bill, Roommate
+from pdfreport import PdfReport
 
 bill_amount = float(input("Enter the bill amount: "))
 bill_period = input("Ender the bill period: ")
