@@ -17,7 +17,10 @@ class BillFormPage(MethodView):
 
 
 class ResultsPage(MethodView):
-    pass
+    def post(self):
+        billform = BillForm(request.form)
+        amount = billform.amount.data
+        return amount
 
 
 class BillForm(Form):
@@ -31,9 +34,8 @@ class BillForm(Form):
     button = SubmitField(label='Submit')
 
 
-
 app.add_url_rule("/", view_func=HomePage.as_view('home_page'))
 app.add_url_rule("/bill", view_func=BillFormPage.as_view('bill_form_page'))
-app.add_url_rule("/result", view_func=ResultsPage.as_view('results_page'))
+app.add_url_rule("/results", view_func=ResultsPage.as_view('results_page'))
 
 app.run(debug=True)
