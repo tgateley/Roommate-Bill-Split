@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Bill Form</title>
+    <link rel="stylesheet" href="static/main.css">
 </head>
 <body>
     <h1>Bill Form</h1>
-    <p>Fill out the form below and click the button for the results</p>
+    <p>Fill out the form below and click the button for the result</p>
 <form action="/results" method="post">
-    {{bill_form.amount.label}} {{bill_form.amount}}
+    {{bill_form.amount.label}} <br> {{bill_form.amount}}
     <br>
-    {{bill_form.period.label}} {{bill_form.period}}
+    {{bill_form.period.label}} <br> {{bill_form.period}}
     <hr>
     <h3>First Roommate </h3>
-    {{bill_form.roommate1.label}} {{bill_form.roommate1}}
+    {{bill_form.roommate1.label}} <br> {{bill_form.roommate1}}
     <br>
-    {{bill_form.days_in_house1.label}} {{bill_form.days_in_house1}}
+    {{bill_form.days_in_house1.label}} <br> {{bill_form.days_in_house1}}
     <hr>
     <h3>Second Roommate</h3>
-    {{bill_form.roommate2.label}} {{bill_form.roommate2}}
+    {{bill_form.roommate2.label}} <br> {{bill_form.roommate2}}
     <br>
-    {{bill_form.days_in_house2.label}} {{bill_form.days_in_house2}}
+    {{bill_form.days_in_house2.label}} <br> {{bill_form.days_in_house2}}
     <br>
     <br>
     {{bill_form.button}}
